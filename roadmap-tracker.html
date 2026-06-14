@@ -1,0 +1,1469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mission: ₹50k+ Internship — 6-Month Tracker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0b0e13;
+    --bg2: #111620;
+    --bg3: #161c28;
+    --border: #1e2940;
+    --border2: #253050;
+    --purple: #7c6aff;
+    --purple-dim: #3d3580;
+    --purple-bg: #1a1730;
+    --teal: #2ee8b0;
+    --teal-dim: #0f6e55;
+    --teal-bg: #0d2420;
+    --amber: #f0a830;
+    --amber-dim: #7a5410;
+    --amber-bg: #1f1608;
+    --coral: #f06060;
+    --coral-dim: #7a2020;
+    --coral-bg: #1f0d0d;
+    --blue: #4fa3f7;
+    --blue-bg: #0c1a2e;
+    --text: #d4daf0;
+    --text2: #7a88aa;
+    --text3: #454f6a;
+    --green: #3de88a;
+    --green-dim: #0f6e40;
+    --green-bg: #0a1f14;
+    --mono: 'JetBrains Mono', monospace;
+    --sans: 'Inter', sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 14px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* Scanline overlay for hacker feel */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px);
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  /* ── Header ── */
+  header {
+    border-bottom: 1px solid var(--border);
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+    position: sticky;
+    top: 0;
+    background: var(--bg);
+    z-index: 100;
+  }
+
+  .logo {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--purple);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .logo .blink {
+    width: 8px; height: 8px;
+    background: var(--purple);
+    border-radius: 50%;
+    animation: blink 1.4s step-end infinite;
+  }
+
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+  .header-right {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text3);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .header-right .clock { color: var(--teal); }
+
+  /* ── Layout ── */
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 28px 24px 60px;
+  }
+
+  /* ── Hero ── */
+  .hero {
+    margin-bottom: 32px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 28px 32px;
+    background: var(--bg2);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--purple), var(--teal), var(--purple));
+    background-size: 200%;
+    animation: shimmer 3s linear infinite;
+  }
+
+  @keyframes shimmer { 0%{background-position:0%} 100%{background-position:200%} }
+
+  .hero-eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--purple);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .hero-title {
+    font-family: var(--mono);
+    font-size: 28px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.2;
+    margin-bottom: 8px;
+  }
+
+  .hero-title span { color: var(--teal); }
+
+  .hero-sub {
+    font-size: 13px;
+    color: var(--text2);
+    margin-bottom: 24px;
+  }
+
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 12px;
+  }
+
+  .stat-box {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+    text-align: center;
+  }
+
+  .stat-num {
+    font-family: var(--mono);
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--teal);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .stat-label {
+    font-size: 11px;
+    color: var(--text3);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  /* ── Global progress bar ── */
+  .global-progress {
+    margin-bottom: 32px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px 24px;
+    background: var(--bg2);
+  }
+
+  .gp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+  }
+
+  .gp-label {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text2);
+  }
+
+  .gp-pct {
+    font-family: var(--mono);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--purple);
+  }
+
+  .bar-track {
+    height: 8px;
+    background: var(--bg3);
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+
+  .bar-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.6s ease;
+    background: linear-gradient(90deg, var(--purple), var(--teal));
+  }
+
+  .month-markers {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 6px;
+  }
+
+  .month-marker {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text3);
+  }
+
+  /* ── Phase sections ── */
+  .phase {
+    margin-bottom: 28px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    background: var(--bg2);
+  }
+
+  .phase-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 20px;
+    cursor: pointer;
+    user-select: none;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.15s;
+  }
+
+  .phase-header:hover { background: var(--bg3); }
+
+  .phase-header-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .phase-tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 4px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .tag-p1 { background: var(--purple-bg); color: var(--purple); border: 1px solid var(--purple-dim); }
+  .tag-p2 { background: var(--teal-bg); color: var(--teal); border: 1px solid var(--teal-dim); }
+  .tag-p3 { background: var(--amber-bg); color: var(--amber); border: 1px solid var(--amber-dim); }
+  .tag-track { background: var(--blue-bg); color: var(--blue); border: 1px solid #1a3a6a; }
+
+  .phase-title-text {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .phase-duration {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text3);
+    margin-left: 4px;
+  }
+
+  .phase-header-right {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .phase-progress-pill {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text2);
+  }
+
+  .phase-mini-bar {
+    width: 80px;
+    height: 4px;
+    background: var(--bg3);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .phase-mini-fill {
+    height: 100%;
+    border-radius: 2px;
+    background: var(--purple);
+    transition: width 0.4s;
+  }
+
+  .chevron {
+    font-size: 12px;
+    color: var(--text3);
+    transition: transform 0.2s;
+  }
+
+  .phase.collapsed .chevron { transform: rotate(-90deg); }
+  .phase.collapsed .phase-body { display: none; }
+
+  .phase-body { padding: 16px 20px; }
+
+  /* ── Category grid ── */
+  .cat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 14px;
+  }
+
+  .cat-card {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+
+  .cat-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text3);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .cat-label::before {
+    content: '';
+    display: inline-block;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+  }
+
+  .cat-cert .cat-label::before { background: var(--purple); }
+  .cat-labs .cat-label::before { background: var(--teal); }
+  .cat-bounty .cat-label::before { background: var(--coral); }
+  .cat-portfolio .cat-label::before { background: var(--amber); }
+  .cat-apply .cat-label::before { background: var(--green); }
+  .cat-weekly .cat-label::before { background: var(--blue); }
+
+  /* ── Task items ── */
+  .task {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    transition: background 0.1s;
+    border-radius: 4px;
+  }
+
+  .task:last-child { border-bottom: none; }
+  .task:hover { background: rgba(124,106,255,0.04); padding-left: 4px; }
+
+  .task-checkbox {
+    width: 16px; height: 16px;
+    border: 1.5px solid var(--border2);
+    border-radius: 3px;
+    flex-shrink: 0;
+    margin-top: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s;
+    background: transparent;
+  }
+
+  .task.done .task-checkbox {
+    background: var(--teal);
+    border-color: var(--teal);
+  }
+
+  .task.done .task-checkbox::after {
+    content: '✓';
+    font-size: 10px;
+    color: #0b0e13;
+    font-weight: 700;
+  }
+
+  .task-content { flex: 1; min-width: 0; }
+
+  .task-name {
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.4;
+    transition: color 0.15s;
+  }
+
+  .task.done .task-name {
+    color: var(--text3);
+    text-decoration: line-through;
+    text-decoration-color: var(--text3);
+  }
+
+  .task-meta {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text3);
+    margin-top: 2px;
+  }
+
+  .task-badge {
+    font-family: var(--mono);
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 3px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .badge-voucher { background: var(--purple-bg); color: var(--purple); border: 1px solid var(--purple-dim); }
+  .badge-free { background: var(--teal-bg); color: var(--teal); border: 1px solid var(--teal-dim); }
+  .badge-paid { background: var(--amber-bg); color: var(--amber); border: 1px solid var(--amber-dim); }
+  .badge-daily { background: var(--blue-bg); color: var(--blue); border: 1px solid #1a3a6a; }
+
+  /* ── Milestone target boxes ── */
+  .milestone-box {
+    margin-top: 16px;
+    background: var(--bg);
+    border: 1px solid var(--border2);
+    border-radius: 6px;
+    padding: 12px 16px;
+    border-left: 3px solid var(--purple);
+  }
+
+  .milestone-box.teal { border-left-color: var(--teal); }
+  .milestone-box.amber { border-left-color: var(--amber); }
+
+  .milestone-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text3);
+    margin-bottom: 6px;
+  }
+
+  .milestone-text {
+    font-size: 12px;
+    color: var(--text2);
+    line-height: 1.6;
+  }
+
+  /* ── Parallel tracks section ── */
+  .tracks-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-top: 0;
+  }
+
+  @media (max-width: 600px) {
+    .tracks-grid { grid-template-columns: 1fr; }
+    .hero-title { font-size: 20px; }
+    .stats-row { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  /* ── Assets section ── */
+  .assets-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 10px;
+    margin-bottom: 28px;
+  }
+
+  .asset-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .asset-status {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--mono);
+    font-size: 11px;
+  }
+
+  .dot-ready { width: 7px; height: 7px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
+  .dot-pending { width: 7px; height: 7px; border-radius: 50%; background: var(--amber); flex-shrink: 0; }
+
+  .asset-name {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .asset-when {
+    font-size: 11px;
+    color: var(--text3);
+  }
+
+  /* ── Section label ── */
+  .section-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text3);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ── Footer ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 16px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-text {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text3);
+  }
+
+  /* Reset button */
+  .reset-btn {
+    font-family: var(--mono);
+    font-size: 11px;
+    background: none;
+    border: 1px solid var(--border2);
+    color: var(--text3);
+    padding: 4px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .reset-btn:hover { border-color: var(--coral-dim); color: var(--coral); }
+
+  /* ── Confetti ── */
+  .confetti-piece {
+    position: fixed;
+    width: 8px; height: 8px;
+    pointer-events: none;
+    z-index: 10000;
+    border-radius: 2px;
+    animation: fall 1.2s ease-in forwards;
+  }
+
+  @keyframes fall {
+    0%   { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(80vh) rotate(360deg); opacity: 0; }
+  }
+
+  /* ── Tooltip ── */
+  [data-tip] { position: relative; }
+  [data-tip]:hover::after {
+    content: attr(data-tip);
+    position: absolute;
+    bottom: calc(100% + 6px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--bg3);
+    border: 1px solid var(--border2);
+    color: var(--text2);
+    font-family: var(--mono);
+    font-size: 10px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+    pointer-events: none;
+    z-index: 200;
+  }
+
+  /* ── Lock screen ── */
+  #lock-screen {
+    position: fixed;
+    inset: 0;
+    background: var(--bg);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  #lock-screen.hidden { display: none; }
+
+  body.locked > *:not(#lock-screen) { display: none !important; }
+
+  .lock-box {
+    width: 100%;
+    max-width: 360px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--bg2);
+    padding: 28px 28px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .lock-box::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--purple), var(--teal), var(--purple));
+    background-size: 200%;
+    animation: shimmer 3s linear infinite;
+  }
+
+  .lock-eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--purple);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .lock-title {
+    font-family: var(--mono);
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 6px;
+  }
+
+  .lock-sub {
+    font-size: 12px;
+    color: var(--text2);
+    margin-bottom: 20px;
+  }
+
+  .lock-input {
+    width: 100%;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 14px;
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 14px;
+    outline: none;
+    margin-bottom: 12px;
+    letter-spacing: 0.08em;
+  }
+
+  .lock-input:focus { border-color: var(--purple); }
+
+  .lock-btn {
+    width: 100%;
+    background: linear-gradient(90deg, var(--purple), var(--teal));
+    border: none;
+    border-radius: 8px;
+    padding: 12px 14px;
+    color: #0b0e13;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+  }
+
+  .lock-error {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--coral);
+    margin-top: 10px;
+    min-height: 14px;
+  }
+</style>
+</head>
+<body class="locked">
+
+<div id="lock-screen">
+  <div class="lock-box">
+    <div class="lock-eyebrow">// access restricted</div>
+    <div class="lock-title">Enter Password</div>
+    <div class="lock-sub">This tracker is private. Enter the password to continue.</div>
+    <input type="password" id="lock-input" class="lock-input" placeholder="••••••••" autocomplete="off" onkeydown="if(event.key==='Enter') checkPassword()">
+    <button class="lock-btn" onclick="checkPassword()">Unlock</button>
+    <div class="lock-error" id="lock-error"></div>
+  </div>
+</div>
+
+<header>
+  <div class="logo">
+    <span class="blink"></span>
+    <span>mission_internship.sh</span>
+  </div>
+  <div class="header-right">
+    <span>target: ₹50,000+ stipend</span>
+    <span class="clock" id="clock">--:--:--</span>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-eyebrow">// active mission</div>
+    <div class="hero-title">6-Month Offensive<br><span>Security Roadmap</span></div>
+    <div class="hero-sub">End of 2nd year → ₹50k+ internship. Offensive security first, SDE backup. Every task checked = one step closer.</div>
+    <div class="stats-row">
+      <div class="stat-box">
+        <div class="stat-num" id="stat-done">0</div>
+        <div class="stat-label">Tasks done</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num" id="stat-total">0</div>
+        <div class="stat-label">Total tasks</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num" id="stat-certs">0</div>
+        <div class="stat-label">Certs earned</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num" id="stat-writeups">0</div>
+        <div class="stat-label">Writeups live</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num" id="stat-pct">0%</div>
+        <div class="stat-label">Overall %</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Global progress -->
+  <div class="global-progress">
+    <div class="gp-header">
+      <span class="gp-label">// overall_progress</span>
+      <span class="gp-pct" id="gp-pct">0%</span>
+    </div>
+    <div class="bar-track">
+      <div class="bar-fill" id="gp-bar" style="width:0%"></div>
+    </div>
+    <div class="month-markers">
+      <span class="month-marker">Start</span>
+      <span class="month-marker">M1</span>
+      <span class="month-marker">M2</span>
+      <span class="month-marker">M3</span>
+      <span class="month-marker">M4</span>
+      <span class="month-marker">M5</span>
+      <span class="month-marker">M6 → Hired</span>
+    </div>
+  </div>
+
+  <!-- Assets / vouchers you own -->
+  <div class="section-label">// vouchers &amp; assets you already own</div>
+  <div class="assets-grid">
+    <div class="asset-card">
+      <div class="asset-status"><span class="dot-ready"></span><span style="color:var(--green)">ready</span></div>
+      <div class="asset-name">CC (ISC2)</div>
+      <div class="asset-when">Use: Week 1</div>
+    </div>
+    <div class="asset-card">
+      <div class="asset-status"><span class="dot-ready"></span><span style="color:var(--green)">ready</span></div>
+      <div class="asset-name">CRTA voucher</div>
+      <div class="asset-when">Use: Week 2–5</div>
+    </div>
+    <div class="asset-card">
+      <div class="asset-status"><span class="dot-ready"></span><span style="color:var(--green)">ready</span></div>
+      <div class="asset-name">Web-RTA voucher</div>
+      <div class="asset-when">Use: Week 9–12</div>
+    </div>
+    <div class="asset-card">
+      <div class="asset-status"><span class="dot-ready"></span><span style="color:var(--green)">ready</span></div>
+      <div class="asset-name">CEHv13 Practical</div>
+      <div class="asset-when">Use: Week 5–8</div>
+    </div>
+    <div class="asset-card">
+      <div class="asset-status"><span class="dot-ready"></span><span style="color:var(--green)">ready</span></div>
+      <div class="asset-name">PEN1 (Bitten Tech)</div>
+      <div class="asset-when">Use: Day 1</div>
+    </div>
+    <div class="asset-card">
+      <div class="asset-status"><span class="dot-ready"></span><span style="color:var(--green)">ready</span></div>
+      <div class="asset-name">Python 30-day course</div>
+      <div class="asset-when">Use: Month 1–2</div>
+    </div>
+    <div class="asset-card">
+      <div class="asset-status"><span class="dot-ready"></span><span style="color:var(--green)">ready</span></div>
+      <div class="asset-name">TryHackMe Premium</div>
+      <div class="asset-when">Use: All 6 months</div>
+    </div>
+    <div class="asset-card">
+      <div class="asset-status"><span class="dot-pending"></span><span style="color:var(--amber)">decide</span></div>
+      <div class="asset-name">OSCP / CPTS / PenTest+</div>
+      <div class="asset-when">Month 5–6 (budget call)</div>
+    </div>
+  </div>
+
+  <!-- Phase 1 -->
+  <div class="phase" id="phase1">
+    <div class="phase-header" onclick="togglePhase('phase1')">
+      <div class="phase-header-left">
+        <span class="phase-tag tag-p1">Phase 1</span>
+        <span class="phase-title-text">Foundation</span>
+        <span class="phase-duration">· Month 1–2 · Weeks 1–8</span>
+      </div>
+      <div class="phase-header-right">
+        <span class="phase-progress-pill" id="p1-prog">0/0</span>
+        <div class="phase-mini-bar"><div class="phase-mini-fill" id="p1-bar" style="width:0%;background:var(--purple)"></div></div>
+        <span class="chevron">▼</span>
+      </div>
+    </div>
+    <div class="phase-body">
+      <div class="cat-grid">
+        <div class="cat-card cat-cert">
+          <div class="cat-label">certifications</div>
+          <div class="task" onclick="toggle(this)" data-cat="cert">
+            <div class="task-checkbox"></div>
+            <div class="task-content">
+              <div class="task-name">Complete CC (ISC2) exam</div>
+              <div class="task-meta">Week 1 · voucher in hand</div>
+            </div>
+            <span class="task-badge badge-voucher">voucher</span>
+          </div>
+          <div class="task" onclick="toggle(this)" data-cat="cert">
+            <div class="task-checkbox"></div>
+            <div class="task-content">
+              <div class="task-name">Complete CRTA (CyberWarfare Labs)</div>
+              <div class="task-meta">Week 2–5 · Active Directory focused</div>
+            </div>
+            <span class="task-badge badge-voucher">voucher</span>
+          </div>
+          <div class="task" onclick="toggle(this)" data-cat="cert">
+            <div class="task-checkbox"></div>
+            <div class="task-content">
+              <div class="task-name">Attempt CEHv13 Practical exam</div>
+              <div class="task-meta">Week 5–8 · voucher in hand</div>
+            </div>
+            <span class="task-badge badge-voucher">voucher</span>
+          </div>
+        </div>
+
+        <div class="cat-card cat-labs">
+          <div class="cat-label">hands-on labs</div>
+          <div class="task" onclick="toggle(this)">
+            <div class="task-checkbox"></div>
+            <div class="task-content">
+              <div class="task-name">Start PEN1 course (Bitten Tech) — Day 1</div>
+              <div class="task-meta">Map each module to a THM room</div>
+            </div>
+            <span class="task-badge badge-free">owned</span>
+          </div>
+          <div class="task" onclick="toggle(this)">
+            <div class="task-checkbox"></div>
+            <div class="task-content">
+              <div class="task-name">Complete THM: Jr Penetration Tester path</div>
+              <div class="task-meta">TryHackMe premium · you're top 3%</div>
+            </div>
+            <span class="task-badge badge-free">owned</span>
+          </div>
+          <div class="task" onclick="toggle(this)">
+            <div class="task-checkbox"></div>
+            <div class="task-content">
+              <div class="task-name">Complete THM: Offensive Pentesting path</div>
+              <div class="task-meta">TryHackMe premium</div>
+            </div>
+            <span class="task-badge badge-free">owned</span>
+          </div>
+          <div class="task" onclick="toggle(this)">
+            <div class="task-checkbox"></div>
+            <div class="task-content">
+              <div class="task-name">Finish all 10 Python projects (30-day course)</div>
+              <div class="task-meta">Push every project to GitHub</div>
+            </div>
+            <span class="task-badge badge-free">owned</span>
+          </div>
+          <div class="task" onclick="toggle(this)">
+            <div class="task-checkbox"></div>
+            <div class="task-content">
+              <div class="task-name">Create HackTheBox account</div>
+              <div class="task-meta">Solve 2 retired easy machines</div>
+            </div>
+            <span class="task-badge badge-free">free</span>
+          </div>
+        </div>
+
+        <div class="cat-card cat-weekly">
+          <div class="cat-label">weekly non-negotiables</div>
+          <div class="task" onclick="toggle(this)">
+            <div class="task-checkbox"></div>
+            <div class="task-content">
+              <div class="task-name">Write 8 machine writeups (1/week)</div>
+              <div class="task-meta">Post on Medium or GitHub · Weeks 1–8</div>
+            </div>
+            <span class="task-badge badge-daily">recurring</span>
+          </div>
+          <div class="task" onclick="toggle(this)">
+            <div class="task-checkbox"></div>
+            <div class="task-content">
+              <div class="task-name">Solve 3 LeetCode problems/week in Python</div>
+              <div class="task-meta">24 problems total by end of Month 2</div>
+            </div>
+            <span class="task-badge badge-daily">recurring</span>
+          </div>
+          <div class="task" onclick="toggle(this)">
+            <div class="task-checkbox"></div>
+            <div class="task-content">
+              <div class="task-name">Post 8 LinkedIn updates (1/week)</div>
+              <div class="task-meta">CTF solve, cert milestone, tool built</div>
+            </div>
+            <span class="task-badge badge-daily">recurring</span>
+          </div>
+          <div class="task" onclick="toggle(this)">
+            <div class="task-checkbox"></div>
+            <div class="task-content">
+              <div class="task-name">Create HackerOne account</div>
+              <div class="task-meta">Week 4 — explore VDP programs</div>
+            </div>
+            <span class="task-badge badge-free">free</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="milestone-box">
+        <div class="milestone-label">// end of month 2 checkpoint</div>
+        <div class="milestone-text">CC + CRTA + CEHv13 Practical earned · 8+ writeups published · 5+ Python tools on GitHub · HackerOne account active · 24+ LeetCode problems done</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Phase 2 -->
+  <div class="phase" id="phase2">
+    <div class="phase-header" onclick="togglePhase('phase2')">
+      <div class="phase-header-left">
+        <span class="phase-tag tag-p2">Phase 2</span>
+        <span class="phase-title-text">Offense Build</span>
+        <span class="phase-duration">· Month 3–4 · Weeks 9–16</span>
+      </div>
+      <div class="phase-header-right">
+        <span class="phase-progress-pill" id="p2-prog">0/0</span>
+        <div class="phase-mini-bar"><div class="phase-mini-fill" id="p2-bar" style="width:0%;background:var(--teal)"></div></div>
+        <span class="chevron">▼</span>
+      </div>
+    </div>
+    <div class="phase-body">
+      <div class="cat-grid">
+        <div class="cat-card cat-cert">
+          <div class="cat-label">certifications</div>
+          <div class="task" onclick="toggle(this)" data-cat="cert">
+            <div class="task-checkbox"></div>
+            <div class="task-content">
+              <div class="task-name">Complete Web-RTA (CyberWarfare Labs)</div>
+              <div class="task-meta">Week 9–12 · web app pentesting</div>
+            </div>
+            <span class="task-badge badge-voucher">voucher</span>
+          </div>
+          <div class="task" onclick="toggle(this)">
+            <div class="task-checkbox"></div>
+            <div class="task-content">
+              <div class="task-name">Start OSCP prep — PEN-200 syllabus</div>
+              <div class="task-meta">Mirror via THM + HTB · Week 13–16</div>
+            </div>
+            <span class="task-badge badge-free">free prep</span>
+          </div>
+        </div>
+
+        <div class="cat-card cat-bounty">
+          <div class="cat-label">bug bounty</div>
+          <div class="task" onclick="toggle(this)">
+            <div class="task-checkbox"></div>
+            <div class="task-content">
+              <div class="task-name">Submit first HackerOne VDP report</div>
+              <div class="task-meta">Focus: IDOR, XSS, open redirect</div>
+            </div>
+            <span class="task-badge badge-free">HackerOne</span>
+          </div>
+          <div class="task" onclick="toggle(this)">
+            <div class="task-checkbox"></div>
+            <div class="task-content">
+              <div class="task-name">Reach 500 HackerOne reputation points</div>
+              <div class="task-meta">Target by end of Month 4</div>
+            </div>
+            <span class="task-badge badge-free">HackerOne</span>
+          </div>
+          <div class="task" onclick="toggle(this)">
+            <div class="task-checkbox"></div>
+            <div class="task-content">
+              <div class="task-name">Publish 2 bug bounty writeups</div>
+              <div class="task-meta">Even informative/N/A — shows process</div>
+            </div>
+            <span class="task-badge badge-free">portfolio</span>
+          </div>
+        </div>
+
+        <div class="cat-card cat-labs">
+          <div class="cat-label">technical skills</div>
+          <div class="task" onclick="toggle(this)">
+            <div class="task-checkbox"></div>
+            <div class="task-content">
+              <div class="task-name">Complete PortSwigger Web Security Academy</div>
+              <div class="task-meta">OWASP Top 10 — best free web resource</div>
+            </div>
+            <span class="task-badge badge-free">free</span>
+          </div>
+          <div class="task" onclick="toggle(this)">
+            <div class="task-checkbox"></div>
+            <div class="task-content">
+              <div class="task-name">Complete HTB "Starting Point" track</div>
+              <div class="task-meta">5 easy/medium machines</div>
+            </div>
+            <span class="task-badge badge-free">HTB</span>
+          </div>
+          <div class="task" onclick="toggle(this)">
+            <div class="task-checkbox"></div>
+            <div class="task-content">
+              <div class="task-name">Demo Active Directory attack chain</div>
+              <div class="task-meta">Kerberoasting, Pass-the-Hash, etc.</div>
+            </div>
+            <span class="task-badge badge-free">CRTA skills</span>
+          </div>
+          <div class="task" onclick="toggle(this)">
+            <div class="task-checkbox"></div>
+            <div class="task-content">
+              <div class="task-name">Write pentest report for every machine owned</div>
+              <div class="task-meta">Use a real professional template</div>
+            </div>
+            <span class="task-badge badge-free">portfolio</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="milestone-box teal">
+        <div class="milestone-label">// end of month 4 checkpoint</div>
+        <div class="milestone-text">Web-RTA done · HackerOne 500+ rep · 15+ writeups · can demo AD attacks + web vulns · OSCP prep 50% complete</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Phase 3 -->
+  <div class="phase" id="phase3">
+    <div class="phase-header" onclick="togglePhase('phase3')">
+      <div class="phase-header-left">
+        <span class="phase-tag tag-p3">Phase 3</span>
+        <span class="phase-title-text">Proof &amp; Apply</span>
+        <span class="phase-duration">· Month 5–6 · Weeks 17–24</span>
+      </div>
+      <div class="phase-header-right">
+        <span class="phase-progress-pill" id="p3-prog">0/0</span>
+        <div class="phase-mini-bar"><div class="phase-mini-fill" id="p3-bar" style="width:0%;background:var(--amber)"></div></div>
+        <span class="chevron">▼</span>
+      </div>
+    </div>
+    <div class="phase-body">
+      <div class="cat-grid">
+        <div class="cat-card cat-cert">
+          <div class="cat-label">certification push (pick one)</div>
+          <div class="task" onclick="toggle(this)" data-cat="cert">
+            <div class="task-checkbox"></div>
+            <div class="task-content">
+              <div class="task-name">Attempt OSCP exam</div>
+              <div class="task-meta">~$1,499 · Priority 1 on HackerOne list</div>
+            </div>
+            <span class="task-badge badge-paid">$1499</span>
+          </div>
+          <div class="task" onclick="toggle(this)" data-cat="cert">
+            <div class="task-checkbox"></div>
+            <div class="task-content">
+              <div class="task-name">Attempt HTB CPTS (budget option)</div>
+              <div class="task-meta">~$210 · OSCP-level · listed in JD1</div>
+            </div>
+            <span class="task-badge badge-paid">$210</span>
+          </div>
+          <div class="task" onclick="toggle(this)" data-cat="cert">
+            <div class="task-checkbox"></div>
+            <div class="task-content">
+              <div class="task-name">Attempt CompTIA PenTest+ (fallback)</div>
+              <div class="task-meta">~$370 · listed in JD1 · globally recognized</div>
+            </div>
+            <span class="task-badge badge-paid">$370</span>
+          </div>
+        </div>
+
+        <div class="cat-card cat-portfolio">
+          <div class="cat-label">portfolio</div>
+          <div class="task" onclick="toggle(this)" data-cat="writeup">
+            <div class="task-checkbox"></div>
+            <div class="task-content">
+              <div class="task-name">Reach 20+ published writeups</div>
+              <div class="task-meta">Medium or personal blog</div>
+            </div>
+            <span class="task-badge badge-free">portfolio</span>
+          </div>
+          <div class="task" onclick="toggle(this)">
+            <div class="task-checkbox"></div>
+            <div class="task-content">
+              <div class="task-name">GitHub: 5+ hacking tools with READMEs</div>
+              <div class="task-meta">Python tools from 30-day course + originals</div>
+            </div>
+            <span class="task-badge badge-free">portfolio</span>
+          </div>
+          <div class="task" onclick="toggle(this)">
+            <div class="task-checkbox"></div>
+            <div class="task-content">
+              <div class="task-name">Record &amp; post a 2-min exploit demo on LinkedIn</div>
+              <div class="task-meta">Shows communication + technical skill</div>
+            </div>
+            <span class="task-badge badge-free">portfolio</span>
+          </div>
+          <div class="task" onclick="toggle(this)">
+            <div class="task-checkbox"></div>
+            <div class="task-content">
+              <div class="task-name">Participate in 2 CTF events</div>
+              <div class="task-meta">HTB CTF, PicoCTF, or similar — post rank</div>
+            </div>
+            <span class="task-badge badge-free">CTF</span>
+          </div>
+        </div>
+
+        <div class="cat-card cat-apply">
+          <div class="cat-label">applications</div>
+          <div class="task" onclick="toggle(this)">
+            <div class="task-checkbox"></div>
+            <div class="task-content">
+              <div class="task-name">Apply to Big 4 (EY, Deloitte, KPMG, PwC)</div>
+              <div class="task-meta">Cybersecurity intern roles · CEH + CRTA fits</div>
+            </div>
+            <span class="task-badge badge-free">priority 1</span>
+          </div>
+          <div class="task" onclick="toggle(this)">
+            <div class="task-checkbox"></div>
+            <div class="task-content">
+              <div class="task-name">Apply to HackerOne pentest community</div>
+              <div class="task-meta">500 rep + 1 cert = Priority 3 · OSCP = Priority 1</div>
+            </div>
+            <span class="task-badge badge-free">priority 2</span>
+          </div>
+          <div class="task" onclick="toggle(this)">
+            <div class="task-checkbox"></div>
+            <div class="task-content">
+              <div class="task-name">Apply to 30+ startup roles via LinkedIn</div>
+              <div class="task-meta">Less competition · ₹50k+ stipends common</div>
+            </div>
+            <span class="task-badge badge-free">priority 3</span>
+          </div>
+          <div class="task" onclick="toggle(this)">
+            <div class="task-checkbox"></div>
+            <div class="task-content">
+              <div class="task-name">Complete 10 mock interview sessions</div>
+              <div class="task-meta">Security + general CS questions</div>
+            </div>
+            <span class="task-badge badge-free">prep</span>
+          </div>
+          <div class="task" onclick="toggle(this)">
+            <div class="task-checkbox"></div>
+            <div class="task-content">
+              <div class="task-name">Explore Bugcrowd &amp; Synack programs</div>
+              <div class="task-meta">Alternative to HackerOne pentest community</div>
+            </div>
+            <span class="task-badge badge-free">priority 4</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="milestone-box amber">
+        <div class="milestone-label">// end of month 6 checkpoint — mission complete</div>
+        <div class="milestone-text">OSCP/CPTS/PenTest+ in hand · 20+ writeups live · GitHub active · HackerOne 500+ rep · 30+ applications sent · 5+ interview calls secured</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Parallel Tracks -->
+  <div class="section-label">// parallel tracks — run every single day</div>
+  <div class="tracks-grid">
+    <div class="phase" id="track-eng" style="margin-bottom:0">
+      <div class="phase-header" onclick="togglePhase('track-eng')">
+        <div class="phase-header-left">
+          <span class="phase-tag tag-track">English</span>
+          <span class="phase-title-text">Communication</span>
+          <span class="phase-duration">· 30 min/day</span>
+        </div>
+        <div class="phase-header-right">
+          <span class="phase-progress-pill" id="te-prog">0/0</span>
+          <div class="phase-mini-bar"><div class="phase-mini-fill" id="te-bar" style="width:0%;background:var(--blue)"></div></div>
+          <span class="chevron">▼</span>
+        </div>
+      </div>
+      <div class="phase-body">
+        <div class="task" onclick="toggle(this)">
+          <div class="task-checkbox"></div>
+          <div class="task-content">
+            <div class="task-name">Install Elsa Speak or start recording yourself</div>
+            <div class="task-meta">15 min speaking practice daily</div>
+          </div>
+        </div>
+        <div class="task" onclick="toggle(this)">
+          <div class="task-checkbox"></div>
+          <div class="task-content">
+            <div class="task-name">Read 1 Krebs on Security article daily</div>
+            <div class="task-meta">10 min · notice how pros write</div>
+          </div>
+        </div>
+        <div class="task" onclick="toggle(this)">
+          <div class="task-checkbox"></div>
+          <div class="task-content">
+            <div class="task-name">Explain every vuln you find to a non-tech person</div>
+            <div class="task-meta">3 sentences max · EY interview skill</div>
+          </div>
+        </div>
+        <div class="task" onclick="toggle(this)">
+          <div class="task-checkbox"></div>
+          <div class="task-content">
+            <div class="task-name">Connect with 20 security pros on LinkedIn</div>
+            <div class="task-meta">EY, Deloitte, HackerOne employees</div>
+          </div>
+        </div>
+        <div class="task" onclick="toggle(this)">
+          <div class="task-checkbox"></div>
+          <div class="task-content">
+            <div class="task-name">Complete 10 mock interview sessions (Month 5)</div>
+            <div class="task-meta">Use ChatGPT or a friend to practice</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase" id="track-dsa" style="margin-bottom:0">
+      <div class="phase-header" onclick="togglePhase('track-dsa')">
+        <div class="phase-header-left">
+          <span class="phase-tag tag-track">DSA</span>
+          <span class="phase-title-text">Python (SDE Backup)</span>
+          <span class="phase-duration">· 30 min/day</span>
+        </div>
+        <div class="phase-header-right">
+          <span class="phase-progress-pill" id="td-prog">0/0</span>
+          <div class="phase-mini-bar"><div class="phase-mini-fill" id="td-bar" style="width:0%;background:var(--blue)"></div></div>
+          <span class="chevron">▼</span>
+        </div>
+      </div>
+      <div class="phase-body">
+        <div class="task" onclick="toggle(this)">
+          <div class="task-checkbox"></div>
+          <div class="task-content">
+            <div class="task-name">Month 1–2: Arrays, strings, hashmaps, two pointers</div>
+            <div class="task-meta">Neetcode roadmap · 3 problems/week</div>
+          </div>
+        </div>
+        <div class="task" onclick="toggle(this)">
+          <div class="task-checkbox"></div>
+          <div class="task-content">
+            <div class="task-name">Month 3–4: Trees, graphs, BFS/DFS, recursion</div>
+            <div class="task-meta">Neetcode roadmap · 4 problems/week</div>
+          </div>
+        </div>
+        <div class="task" onclick="toggle(this)">
+          <div class="task-checkbox"></div>
+          <div class="task-content">
+            <div class="task-name">Month 5–6: DP, backtracking, mock OAs</div>
+            <div class="task-meta">Neetcode roadmap · 5 problems/week</div>
+          </div>
+        </div>
+        <div class="task" onclick="toggle(this)">
+          <div class="task-checkbox"></div>
+          <div class="task-content">
+            <div class="task-name">Build 1 security web tool (full-stack)</div>
+            <div class="task-meta">e.g. subdomain enumerator with UI</div>
+          </div>
+        </div>
+        <div class="task" onclick="toggle(this)">
+          <div class="task-checkbox"></div>
+          <div class="task-content">
+            <div class="task-name">Apply to DevSecOps / AppSec intern roles too</div>
+            <div class="task-meta">Uses both security + SDE skills</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <span class="footer-text">// progress saved in your browser · last updated: <span id="last-save">never</span></span>
+  <button class="reset-btn" onclick="resetAll()">reset all</button>
+</footer>
+
+<script>
+  const STORE_KEY = 'mission_tracker_v1';
+
+  function save() {
+    const tasks = document.querySelectorAll('.task');
+    const state = {};
+    tasks.forEach((t, i) => { state[i] = t.classList.contains('done'); });
+    localStorage.setItem(STORE_KEY, JSON.stringify(state));
+    document.getElementById('last-save').textContent = new Date().toLocaleTimeString();
+  }
+
+  function load() {
+    const raw = localStorage.getItem(STORE_KEY);
+    if (!raw) return;
+    const state = JSON.parse(raw);
+    const tasks = document.querySelectorAll('.task');
+    tasks.forEach((t, i) => {
+      if (state[i]) t.classList.add('done');
+    });
+  }
+
+  function toggle(el) {
+    el.classList.toggle('done');
+    update();
+    save();
+    if (el.classList.contains('done')) burst(el);
+  }
+
+  function togglePhase(id) {
+    document.getElementById(id).classList.toggle('collapsed');
+  }
+
+  function update() {
+    const allTasks = document.querySelectorAll('.task');
+    const doneTasks = document.querySelectorAll('.task.done');
+    const total = allTasks.length;
+    const done = doneTasks.length;
+    const pct = total ? Math.round(done / total * 100) : 0;
+
+    document.getElementById('stat-done').textContent = done;
+    document.getElementById('stat-total').textContent = total;
+    document.getElementById('stat-pct').textContent = pct + '%';
+    document.getElementById('gp-pct').textContent = pct + '%';
+    document.getElementById('gp-bar').style.width = pct + '%';
+
+    const certDone = document.querySelectorAll('.task.done[data-cat="cert"]').length;
+    document.getElementById('stat-certs').textContent = certDone;
+
+    const writeupDone = document.querySelectorAll('.task.done[data-cat="writeup"]').length;
+    document.getElementById('stat-writeups').textContent = writeupDone;
+
+    updatePhase('phase1', 'p1-prog', 'p1-bar');
+    updatePhase('phase2', 'p2-prog', 'p2-bar');
+    updatePhase('phase3', 'p3-prog', 'p3-bar');
+    updatePhase('track-eng', 'te-prog', 'te-bar');
+    updatePhase('track-dsa', 'td-prog', 'td-bar');
+  }
+
+  function updatePhase(phaseId, progId, barId) {
+    const phase = document.getElementById(phaseId);
+    const tasks = phase.querySelectorAll('.task');
+    const done = phase.querySelectorAll('.task.done').length;
+    const total = tasks.length;
+    const pct = total ? Math.round(done / total * 100) : 0;
+    document.getElementById(progId).textContent = done + '/' + total;
+    document.getElementById(barId).style.width = pct + '%';
+  }
+
+  function burst(el) {
+    const colors = ['#7c6aff','#2ee8b0','#f0a830','#f06060','#4fa3f7','#3de88a'];
+    const rect = el.getBoundingClientRect();
+    for (let i = 0; i < 8; i++) {
+      const p = document.createElement('div');
+      p.className = 'confetti-piece';
+      p.style.cssText = `
+        left:${rect.left + rect.width/2 + (Math.random()-0.5)*60}px;
+        top:${rect.top}px;
+        background:${colors[Math.floor(Math.random()*colors.length)]};
+        animation-delay:${Math.random()*0.2}s;
+        animation-duration:${0.8+Math.random()*0.5}s;
+        width:${5+Math.random()*6}px;
+        height:${5+Math.random()*6}px;
+        transform:rotate(${Math.random()*360}deg);
+      `;
+      document.body.appendChild(p);
+      setTimeout(() => p.remove(), 1500);
+    }
+  }
+
+  function resetAll() {
+    if (!confirm('Reset all progress? This cannot be undone.')) return;
+    document.querySelectorAll('.task.done').forEach(t => t.classList.remove('done'));
+    localStorage.removeItem(STORE_KEY);
+    update();
+    document.getElementById('last-save').textContent = 'never';
+  }
+
+  function updateClock() {
+    const now = new Date();
+    document.getElementById('clock').textContent = now.toLocaleTimeString('en-IN', {hour12: false});
+  }
+
+  load();
+  update();
+  updateClock();
+  setInterval(updateClock, 1000);
+
+  // ── Password gate ──
+  const LOCK_KEY = 'mission_tracker_unlocked_v1';
+  const PASSWORD = 'SaReGaMaPaDhaNiSa';
+
+  function unlockSite() {
+    document.body.classList.remove('locked');
+    document.getElementById('lock-screen').classList.add('hidden');
+  }
+
+  function checkPassword() {
+    const input = document.getElementById('lock-input');
+    const errorEl = document.getElementById('lock-error');
+    if (input.value === PASSWORD) {
+      sessionStorage.setItem(LOCK_KEY, '1');
+      unlockSite();
+    } else {
+      errorEl.textContent = 'Incorrect password. Try again.';
+      input.value = '';
+      input.focus();
+    }
+  }
+
+  if (sessionStorage.getItem(LOCK_KEY) === '1') {
+    unlockSite();
+  } else {
+    document.getElementById('lock-input').focus();
+  }
+
+</script>
+</body>
+</html>
